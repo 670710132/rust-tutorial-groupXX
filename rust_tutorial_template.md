@@ -12,7 +12,7 @@
 | # | Name | Student ID | GitHub Username | Main Responsibility |
 |---|---|---|---|---|
 | 1 | `[ชื่อ-นามสกุล]` | `[รหัส]` | `@[username]` | Concept + Code |
-| 2 | `[ชื่อ-นามสกุล]` | `[รหัส]` | `@[username]` | Code + Demo |
+| 2 | `นายธีทัต สุจริตพาณิช` | `670710130` | `@670710130` | Code + Demo |
 | 3 | `[ชื่อ-นามสกุล]` | `[รหัส]` | `@[username]` | Rust vs Other Language + PPL |
 | 4 | `[ชื่อ-นามสกุล]` | `[รหัส]` | `@[username]` | Exercises + Common Mistakes |
 
@@ -103,15 +103,15 @@ fn main() {
 
 | Syntax / Rule | Meaning | Example |
 |---|---|---|
-| `[syntax/rule]` | `[ความหมาย]` | `[ตัวอย่าง]` |
-| `[syntax/rule]` | `[ความหมาย]` | `[ตัวอย่าง]` |
-| `[syntax/rule]` | `[ความหมาย]` | `[ตัวอย่าง]` |
+| `if condition {statement}` | `ทำคำสั่งใน statement ในวงเล็บปีกกา {...} ถ้าเงื่อนไข (condition) เป็นจริง` | `if x > 0 {println("Positive");}` |
+| `if condition1 {statement1}      else if condition2{statement2}  else {statement3}` | `ถ้า condition1 เป็นจริง ทำ statement1 , ถ้า condition1 เป็นเท็จ และ condition2 เป็นจริง ทำ statement2 , ถ้าทั้งสองเงื่อนไขเป็นเท็จ ทำ statement3 ในส่วน else` | `if x > 0 {println!("Positive");}         else if x < 0 {println!("Negative");}      else {println!("Zero");}                                                            ` |
+| `if condition1 {if condition2 {statement}}` | `หาก condition1 ของ if ด้านนอกเป็นจริง จะทำ condition2 ของ if ด้านใน และหาก condition2 เป็นจริงโปรแกรมจะทำงานในส่วนของ statement` | `if x != 0 {if x > 0 {println!("Positive");}}่` |
 
 ### Important Rules
 
-1. `[กฎสำคัญข้อที่ 1]`
-2. `[กฎสำคัญข้อที่ 2]`
-3. `[กฎสำคัญข้อที่ 3]`
+1. `เงื่อนไข(condition)ของ if ต้องเป็น Boolean เท่านั้น เพราะ Rust จะไม่แปลงค่าให้อัตโนมัติเหมือนบางภาษา`
+2. `ต้องมีเครื่องหมายปีกกา '{...}' ครอบการทำงานของ statement เสมอ`
+3. `ไม่จำเป็นต้องใส่เครื่องหมายวงเล็บ '(...)' ครอบส่วนของเงื่อนไข(condition) (complier จะเตือน unnecessary parentheses)`
 
 ---
 
@@ -119,49 +119,98 @@ fn main() {
 
 > **ข้อกำหนด:** Code ทุกตัวต้อง Compile และ Run ได้จริงก่อนนำมาใส่ในเอกสาร
 
-### Example 1 — `[ชื่อ Example]`
+### Example 1 — `[SimpleGrade]`
 
-**Purpose:** `[ต้องการสาธิตอะไร]`
+**Purpose:** `[แสดงการใช้เงื่อนไข if, else if, else อย่างง่ายที่รวมเข้าด้วยกันเป็น code เดียว]`
 
 ```rust
 fn main() {
-    // Write your runnable Rust code here
+    let score:i32 = 90;
+    
+    if score >= 80{
+        println!("Grade A");
+    }
+    else if score >= 60{
+        println!("Grade B");
+    }
+    else if score >= 40{
+        println!("Grade C");
+    }
+    else{
+        println!("Grade F");
+    }
 }
 ```
 
 **Expected Output**
 
 ```text
-[expected output]
+[Grade A]
 ```
 
 **Explanation**
 
-`[อธิบาย code ทีละส่วนที่สำคัญ]`
+`- กำหนดคะแนนที่ใช้ในการตรวจเงื่อนไขให้มีค่า 90`
 
----
+`- เมื่อเข้าเงื่อนไข if score >= 80 หากคะแนน มากกว่าหรือเท่ากับ 80 จะพิมพ์ "Grade A" ออกมา `
 
-### Example 2 — `[ชื่อ Example]`
+`- หากเงื่อนไขแรกเป็นเท็จ จะตรวจเงื่อนไขที่สอง  else if score >= 60 หากคะแนนมีค่า มากกว่าหรือเท่ากับ 60 จะพิมพ์ "Grade B" ออกมา `
 
-**Purpose:** `[ต้องการสาธิตอะไร]`
+`- หากเงื่อนไขที่สองยังคงเป็นเท็จ จะตรวจเงื่อนไขที่สาม  else if score >= 40 หากคะแนนมีค่า มากกว่าหรือเท่ากับ 40 จะพิมพ์ "Grade C" ออกมา`
+
+`- สุดท้ายหากไม่เข้าเงื่อนไขก่อนหน้าอันใดเลย จะทำสิ่งที่อยู่ใน else เป็นการพิมพ์ "Grade F" ออกมา`
+
+`- ในตัวอย่างนี้ score = 90 ซึ่งจะทำเงื่อนไข if เป็นจริง และพิมพ์ "Grade A" ออกมา`
+
+
+
+
+# Example 2 — `[NestedGrade]`
+
+**Purpose:** `[แสดงการใช้ Nested-if ที่เป็นการใช้ if ซ้อนใน if อีกชั้นหนึ่ง ซึ่งเป็นวิธีการทำเงื่อนไขซ้อนเงื่อนไข]`
 
 ```rust
 fn main() {
-    // Write your runnable Rust code here
+    let score:i32 = 39;
+
+    if score >= 60 {
+        if score >= 80 {
+            println!("Grade A");
+        } 
+        else {
+            println!("Grade B");
+        }
+    } 
+    else {
+        if score >= 40 {
+            println!("Grade C");
+        } 
+        else {
+            println!("Grade F");
+        }
+    }
 }
 ```
 
 **Expected Output**
 
 ```text
-[expected output]
+[Grade F]
 ```
 
 **Explanation**
 
-`[อธิบาย code]`
+`- กำหนดคะแนนที่ใช้ในการตรวจให้มีค่า 39`
 
----
+`- เมื่อเข้าเงื่อนไข if score >= 60 หากคะแนน มากกว่าหรือเท่ากับ 60 จะตรวจสอบ  if score >= 80 เป็นตัวถัดไป หากคะแนน มากกว่าหรือเท่ากับ 80 เป็นจริงจะพิมพ์ "Grade A" ออกมา แต่หากเป็นเท็จจะเข้าไปทำในส่วนของ else คือ พิมพ์ "Grade B" ออกมา
+`
+
+`- ในส่วนของ else ด้านนอกจะทำงานเมื่อคะแนนน้อยกว่า 60 (ไม่เข้าเงื่อนไข if) โดยด้านในจะตรวจสอบ if score >= 40 หากคะแนน มากกว่าหรือเท่ากับ 40 เป็นจริงจะพิมพ์ "Grade C" ออกมา แต่หากเป็นเท็จจะเข้าไปทำในส่วนของ else คือ พิมพ์ "Grade F" ออกมา
+`
+
+`- ในตัวอย่างนี้ score = 39 ซึ่งจะทำงานจาก else ด้านนอกสุด และตรวจสอบด้านในเริ่มจาก if score >= 40 เป็นเท็จ ทำให้ขั้นตอนสุดท้ายต้องทำงานในส่วนของ else ด้านใน ซึ่งผลลัพธ์ที่ได้ คือการพิมพ์ "Grade F" อกกมา 
+`
+
 
 ## 7. Common Mistakes
 
