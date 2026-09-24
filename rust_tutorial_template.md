@@ -179,7 +179,7 @@ fn main() {
         println!("Number is not zero");
     }
 }
-
+```
 **Correct Code**
 
 fn main() {
