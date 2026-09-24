@@ -265,7 +265,7 @@ fn main() {
 
 ## 8. Exercises
 
-### Exercise 1 — ระบบคำนวณส่วนลดตามระดับสมาชิกและยอดซื้อ (Nested & Compound Conditions)
+### Exercise 1 — ระบบคำนวณส่วนลดตามระดับสมาชิกและยอดซื้อ
 
 **Problem**
 จงเขียนโปรแกรมคำนวณราคาสุทธิหลังหักส่วนลดร้านค้า โดยรับค่าตัวแปร 2 ตัวคือ `is_vip: bool` และ `total_amount: f64` โดยมีเงื่อนไขการให้ส่วนลดดังนี้:
@@ -288,7 +288,6 @@ fn main() {
     let is_vip: bool = true;
     let total_amount: f64 = 1250.0;
 
-    // ใช้ if - else คำนวณหาอัตราส่วนลด (discount_rate)
     let discount_rate = if is_vip {
         if total_amount >= 1000.0 {
             0.20 // VIP ยอด 1000+ ลด 20%
@@ -308,31 +307,46 @@ fn main() {
     println!("Discount Rate: {}%", discount_rate * 100.0);
     println!("Final Price: {:.2} THB", final_price);
 }
+```
 **Explanation**
 
-`โปรแกรมใช้ if เป็น Expression เพื่อหาค่าอัตราส่วนลดก่อน โดยเริ่มตรวจเช็คจาก is_vip เมื่อเป็น true จะเข้ามาเช็คเงื่อนไขซ้อนด้านในต่อว่า total_amount >= 1000.0 หรือไม่ ซึ่ง 1250.0 >= 1000.0 เป็นจริง บล็อก if ด้านในจึงคืนค่า 0.20 ออกมาเก็บไว้ในตัวแปร discount_rate แล้วนำไปคำนวณราคาสุทธิออกมาได้ 1000.00 THB`
+`ใช้ if เป็น Expression หาค่าอัตราส่วนลดก่อน เริ่มตรวจเช็คจาก is_vip เมื่อเป็น true จะเข้ามาเช็คเงื่อนไขซ้อนด้านในต่อว่า total_amount >= 1000.0 หรือไม่ ซึ่ง 1250.0 >= 1000.0 เป็นจริง บล็อก if ด้านในจึงคืนค่า 0.20 ออกมาเก็บไว้ในตัวแปร discount_rate แล้วนำไปคำนวณราคาสุทธิออกมาได้ 1000.00 THB`
 
 ---
 
-### Exercise 2 — `[ชื่อโจทย์]`
+### Exercise 2 — การแกะค่า Option ด้วย if let 
 
 **Problem**
 
-`[เขียนโจทย์]`
-
+ในภาษา Rust เมื่อทำงานกับข้อมูลที่มีโอกาสเป็นค่าว่างได้ จะใช้ Enum ประเภท `Option<T>` (ซึ่งมีค่าเป็น `Some(T)` หรือ `None`)
+จงเขียนโปรแกรมรับค่าคะแนนสอบ `score: Option<i32>` แล้วใช้โครงสร้างเงื่อนไข `if let` ในการตรวจสอบว่า:
+1. ถ้ามีค่าคะแนนอยู่จริง (`Some(s)`) ให้ตรวจเช็คต่อว่าคะแนน `s >= 50` หรือไม่ ถ้าถึงให้พิมพ์ `"Passed with score: X"` แต่ถ้าไม่ถึงให้พิมพ์ `"Failed with score: X"`
+2. ถ้าไม่มีค่าคะแนน `(None)` ให้พิมพ์ `"No score provided"`
 **Hint**
 
-`[คำใบ้]`
+- โครงสร้าง `if let Some(s) = score { ... } else { ... }` เป็นการเช็คเงื่อนไขพร้อมแกะค่า (Pattern Matching) ในคำสั่งเดียว
 
 **Solution**
 
 ```rust
-// Solution code
+fn main() {
+    let score: Option<i32> = Some(68); 
+
+    if let Some(s) = score {
+        if s >= 50 {
+            println!("Passed with score: {}", s);
+        } else {
+            println!("Failed with score: {}", s);
+        }
+    } else {
+        println!("No score provided");
+    }
+}
 ```
 
 **Explanation**
 
-`[อธิบายแนวทางแก้]`
+`คำสั่ง if let Some(s) = score จะทำการตรวจสอบว่าตัวแปร score มีข้อมูลประเภท Some หรือไม่ ถ้ามี มันจะแกะค่าตัวเลขข้างในออกมาใส่ไว้ในตัวแปร local ชื่อ s ทันที และทำบล็อกเงื่อนไขภายใน (พิมพ์ "Passed with score: 68") แต่ถ้า score เป็น None มันจะข้ามไปทำบล็อก else ด้านนอกสุดแทน ซึ่งเป็นวิธีเขียนเงื่อนไขที่ปลอดภัยและนิยมมากในภาษา Rust`
 
 ---
 
