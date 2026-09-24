@@ -168,7 +168,7 @@ fn main() {
 ### Mistake 1 — การใช้ตัวเลขหรือ Type อื่นที่ไม่ใช่ Boolean ในเงื่อนไข if
 
 **Problem**
-ผู้ที่มาจากภาษา C, C++ หรือ Python มักจะชินกับการใช้ตัวเลข (เช่น `0` หรือ `1`) หรือ Pointer มาเป็นเงื่อนไขหลัง `if` โดยตรง
+คนที่มาจากภาษา C, C++ หรือ Python จะชินกับการใช้ตัวเลข (เช่น `0` หรือ `1`) หรือ Pointer มาเป็นเงื่อนไขหลัง `if` โดยตรง
 
 **Incorrect Code**
 ```rust
@@ -195,27 +195,71 @@ Rust เข้มเรื่อง Type มาก เงื่อนไขห�
 
 ---
 
-### Mistake 2 — `[ชื่อข้อผิดพลาด]`
+### Mistake 2 — การคืนค่าคนละ Type ออกมาจาก if Expression
 
 **Problem**
 
-`[อธิบายปัญหา]`
+`ใน Rust เอา if ไปกำหนดค่าให้ตัวแปรได้ แต่ดันคืนค่าปนกันคนละประเภทในแต่ละปีกกา`
 
 **Incorrect Code**
 
 ```rust
-// Incorrect example
+fn main() {
+    let condition = true;
+    let result = if condition {
+        5       // เป็นตัวเลข
+    } else {
+        "five"  // Compile Error เป็นข้อความ
+    };
+}
 ```
 
 **Correct Code**
 
 ```rust
-// Correct example
+fn main() {
+    let condition = true;
+    let result = if condition {
+        5 // เป็นตัวเลขทั้งคู่
+    } else {
+        6
+    };
+}
 ```
 
 **Why?**
 
-`[อธิบายสาเหตุ]`
+`Rust ต้องรู้ Data Type ของตัวแปรตั้งแต่งานยังไม่รันโปรแกรม ไม่ว่าจะเข้าเงื่อนไข if หรือ else ค่าที่ส่งออกมาต้องเป็น Type เดียวกันเสมอ`
+
+---
+### Mistake 3 — การลืมใส่ else เวลาเอา if ไปกำหนดค่าตัวแปร
+
+**Problem**
+
+`ใช้ if กำหนดค่าให้ตัวแปร แต่ดันเขียนแค่ if ไม่มี else`
+
+**Incorrect Code**
+
+```rust
+fn main() {
+    let is_active = true;
+    // Compile Error! ขาดบล็อก else
+    let status_code = if is_active { 200 };
+}
+```
+
+**Correct Code**
+
+```rust
+fn main() {
+    let is_active = true;
+    let status_code = if is_active { 200 } else { 400 };
+}
+```
+
+**Why?**
+
+`Rust มีกฎเหล็กว่าตัวแปรห้ามว่างเปล่า (Uninitialized) ถ้าไม่มี else แล้วเงื่อนไขเป็น false ตัวแปรจะไม่มีค่าใส่ ซึ่ง Rust ไม่ยินยอม`
 
 ---
 
