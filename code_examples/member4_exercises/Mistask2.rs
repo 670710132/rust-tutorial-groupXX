@@ -1,7 +1,7 @@
 fn main() {
     let condition = true;
     let result = if condition {
-        5 // เป็นตัวเลขทั้งคู่
+        5 
     } else {
         6
     };
