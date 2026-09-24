@@ -6,7 +6,7 @@
 
 ---
 
-## 👥 Members (สมาชิกในกลุ่ม)
+## Members 
 
 | # | Name | Student ID | Main Responsibility |
 |---|---|---|---|
@@ -17,7 +17,7 @@
 
 ---
 
-## 📚 Project Structure (โครงสร้างโปรเจกต์)
+## Project Structure (โครงสร้างโปรเจกต์)
 
-* 📖 **[อ่านบทเรียนหลัก (Tutorial Document)](./rust_tutorial_template.md)**
-* 💻 **[ดูไฟล์โค้ดตัวอย่างและแบบฝึกหัดทั้งหมด (Source Code)](./code_examples/)**
+* **[อ่านบทเรียนหลัก (Tutorial Document)](./rust_tutorial_template.md)**
+* **[ดูไฟล์โค้ดตัวอย่างและแบบฝึกหัดทั้งหมด (Source Code)](./code_examples/)**
