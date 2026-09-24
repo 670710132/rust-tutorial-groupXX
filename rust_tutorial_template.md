@@ -265,27 +265,52 @@ fn main() {
 
 ## 8. Exercises
 
-> จัดทำแบบฝึกหัด **2 ข้อ** ที่สอดคล้องกับ Topic และมีระดับความยากเหมาะสม
-
-### Exercise 1 — `[ชื่อโจทย์]`
+### Exercise 1 — ระบบคำนวณส่วนลดตามระดับสมาชิกและยอดซื้อ (Nested & Compound Conditions)
 
 **Problem**
+จงเขียนโปรแกรมคำนวณราคาสุทธิหลังหักส่วนลดร้านค้า โดยรับค่าตัวแปร 2 ตัวคือ `is_vip: bool` และ `total_amount: f64` โดยมีเงื่อนไขการให้ส่วนลดดังนี้:
+- ถ้าเป็นสมาชิก VIP (`is_vip = true`):
+  - ยอดซื้อตั้งแต่ 1,000 บาทขึ้นไป ได้ส่วนลด 20%
+  - ยอดซื้อน้อยกว่า 1,000 บาท ได้ส่วนลด 10%
+- ถ้าไม่ได้เป็นสมาชิก VIP (`is_vip = false`):
+  - ยอดซื้อตั้งแต่ 1,000 บาทขึ้นไป ได้ส่วนลด 5%
+  - ยอดซื้อน้อยกว่า 1,000 บาท ไม่ได้ส่วนลด (0%)
 
-`[เขียนโจทย์]`
+ให้ใช้ `if - else` ในการคำนวณหาเปอร์เซ็นต์ส่วนลด นำไปหักออกจากยอดซื้อ แล้วพิมพ์ราคาสุทธิออกมาทางหน้าจอ
 
 **Hint**
-
-`[คำใบ้]`
+- ใช้ `if` ซ้อนภายใน `if` (Nested Condition) หรือใช้ Logical Operator `&&` ร่วมด้วย
+- คำนวณส่วนลดโดย `total_amount * (1.0 - discount_rate)`
 
 **Solution**
-
 ```rust
-// Solution code
-```
+fn main() {
+    let is_vip: bool = true;
+    let total_amount: f64 = 1250.0;
 
+    // ใช้ if - else คำนวณหาอัตราส่วนลด (discount_rate)
+    let discount_rate = if is_vip {
+        if total_amount >= 1000.0 {
+            0.20 // VIP ยอด 1000+ ลด 20%
+        } else {
+            0.10 // VIP ยอดไม่ถึง 1000 ลด 10%
+        }
+    } else {
+        if total_amount >= 1000.0 {
+            0.05 // ไม่ใช่ VIP ยอด 1000+ ลด 5%
+        } else {
+            0.00 // ไม่ใช่ VIP ไม่ได้ส่วนลด
+        }
+    };
+
+    let final_price = total_amount * (1.0 - discount_rate);
+    println!("Total Amount: {:.2} THB", total_amount);
+    println!("Discount Rate: {}%", discount_rate * 100.0);
+    println!("Final Price: {:.2} THB", final_price);
+}
 **Explanation**
 
-`[อธิบายแนวทางแก้]`
+`โปรแกรมใช้ if เป็น Expression เพื่อหาค่าอัตราส่วนลดก่อน โดยเริ่มตรวจเช็คจาก is_vip เมื่อเป็น true จะเข้ามาเช็คเงื่อนไขซ้อนด้านในต่อว่า total_amount >= 1000.0 หรือไม่ ซึ่ง 1250.0 >= 1000.0 เป็นจริง บล็อก if ด้านในจึงคืนค่า 0.20 ออกมาเก็บไว้ในตัวแปร discount_rate แล้วนำไปคำนวณราคาสุทธิออกมาได้ 1000.00 THB`
 
 ---
 
