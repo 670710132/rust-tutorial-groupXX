@@ -181,14 +181,14 @@ fn main() {
 }
 ```
 **Correct Code**
-
+```
 fn main() {
     let number = 1;
     if number != 0 { // ต้องเช็คให้ได้ค่า bool (true/false) ชัดเจน
         println!("Number is not zero");
     }
 }
-
+```
 **Why?**
 
 Rust เข้มเรื่อง Type มาก เงื่อนไขหลัง if ต้องได้ค่าออกมาเป็น bool (true หรือ false) เท่านั้น มันจะไม่แปลงตัวเลขเป็น Boolean ให้อัตโนมัติเหมือนภาษา C เพื่อป้องกันบั๊กที่เราอาจจะเผลอเขียนผิด
