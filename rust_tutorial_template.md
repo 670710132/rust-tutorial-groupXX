@@ -448,12 +448,10 @@ fn main() {
 
 ## 12. References
 
-> แนะนำให้มีอย่างน้อย **4 แหล่งอ้างอิง** และควรใช้เอกสารทางการเป็นหลัก
-
-1. `[The Rust Programming Language — Rust Book]`
-2. `[Rust by Example / Rust Reference]`
-3. `[Official documentation ที่เกี่ยวข้องกับ Topic]`
-4. `[แหล่งอ้างอิงเพิ่มเติม]`
+1. Klabnik, S., & Nichols, C. (2023). *Control Flow - The Rust Programming Language*. Rust Documentation. https://doc.rust-lang.org/book/ch03-05-control-flow.html
+2. Rust Community. (n.d.). *If/else - Rust by Example*. Rust Documentation. https://doc.rust-lang.org/rust-by-example/flow_control/if_else.html
+3. Rust Reference Team. (n.d.). *If expressions - The Rust Reference*. Rust Documentation. https://doc.rust-lang.org/reference/expressions/if-expr.html
+4. Rust Community. (n.d.). *if let - Rust by Example*. Rust Documentation. https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html
 
 ---
 
