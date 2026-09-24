@@ -165,17 +165,20 @@ fn main() {
 
 ## 7. Common Mistakes
 
-### Mistake 1 — `[ชื่อข้อผิดพลาด]`
+### Mistake 1 — การใช้ตัวเลขหรือ Type อื่นที่ไม่ใช่ Boolean ในเงื่อนไข if
 
 **Problem**
-
-`[อธิบายปัญหา]`
+ผู้ที่มาจากภาษา C, C++ หรือ Python มักจะชินกับการใช้ตัวเลข (เช่น `0` หรือ `1`) หรือ Pointer มาเป็นเงื่อนไขหลัง `if` โดยตรง
 
 **Incorrect Code**
-
 ```rust
-// Incorrect example
-```
+fn main() {
+    let number = 1;
+    // Compile Error! เพราะ number เป็นประเภท i32 ไม่ใช่ bool
+    if number {
+        println!("Number is not zero");
+    }
+}
 
 **Correct Code**
 
