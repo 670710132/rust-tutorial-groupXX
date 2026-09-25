@@ -12,7 +12,7 @@
 |---|---|---|---|---|
 | 1 | `[นางสาวธนัญญา พรมภักดี]` | `[670710128]` | `@[username]` | Concept + Code |
 | 2 | `[นายธีทัต สุจริตพาณิช]` | `[670710130]` | `@[username]` | Code + Demo |
-| 3 | `[นายนทิบดี ช้างทอง]` | `[670710131]` | `@[username]` | Rust vs Other Language + PPL |
+| 3 | `[นายนทิบดี ช้างทอง]` | `[670710131]` | `@670710131` | Rust vs Other Language + PPL |
 | 4 | `[นายนนธวัช งามบุญศิริสิงห์]` | `[670710132]` | `@670710132` | Exercises + Common Mistakes |
 
 ---
@@ -358,27 +358,31 @@ fn main() {
 
 ### 9.1 Syntax
 
-`[Topic นี้เกี่ยวข้องกับ syntax อย่างไร]`
+`[Rust นั้นเป็นภาษาที่ Conditional structures มี syntax ที่ไม่เหมือนภาษาอื่นตรงที่ condition ของข้อนั้นๆ จะไม่มีการใส่วงเล็บแต่ก็ยังคงต้องใส่ {} เพื่อเป็นการทำ block ทุก statment และยังสามรถนำ if ไปใช้เป็น expression ได้โดยตรงและคืนค่าออกมาได้เลย เหมือนเป็นตัวแปรตัวหนึ่งทำให้เราเอาไป assign ใส่ตัวแปรได้เลย]`
 
 ### 9.2 Semantics
 
-`[คำสั่ง/construct เหล่านี้มีความหมายหรือพฤติกรรมอย่างไร]`
+`[เพราะ if else ทำหน้าที่เป็นตัวตรวจเช็คเงื่อนไข(condition) เพื่อทำการเลือกทิศทางว่าจะทำใน if หรือ else และถ้าใช้ if เป็น expression ต้องมี else เสมอ]`
 
 ### 9.3 Type System
 
-`[เกี่ยวข้องกับ type system อย่างไร ถ้ามี]`
+`[เพราะ Conditon ใน if ต้องเป็น boolean เท่านั้น และเมื่อถูกใช้เป็น expression return type ต้องเป็นชนิดเดียวกันเสมอเพราะตัวแปรใน Rust ทุกตัวต้องมี type ที่เป็น static type]`
 
 ### 9.4 Memory / Resource Management
 
-`[เกี่ยวข้องกับ memory หรือ resource management อย่างไร ถ้ามี]`
+`[เพราะเนื่องจากตัวแปรที่ประกาศภายใน {} ของแต่ละ if นั้นจะถูกจำกัดแค่ใน block นั้น และจะถูก deallocate จาก memory หลังออกจาก if ทันทีทำให้ไม่ต้องพึ่ง garbage collector ทำให้ไม่มี overhead จาก runtime memory management]`
 
 ### 9.5 Abstraction / Other PPL Concepts
 
-`[อธิบาย abstraction, scope, binding, paradigm หรือแนวคิด PPL อื่นที่เกี่ยวข้อง]`
+`[เพราะ if ของ Rust สามารถเป็น expression สะท้อนแนวคิดจากภาษาสาย functional ที่ทุกโครงสร้างคุม flow คืนค่าได้ ต่างจาก imperative ดั้งเดิมเช่น C/Java 
+ ตัวแปรที่ประกาศใน if/else block จึงมี scope จำกัดแค่ใน block
+ Rust ผสม imperative paradigm เข้ากับ functional paradigm หรือเรียกว่าภาษาแบบ multi-paradigm]`
 
 ### 9.6 Why Rust?
 
-`[Rust ใช้แนวคิดนี้เพื่อเพิ่ม safety, reliability หรือ performance อย่างไร]`
+`[เพราะ condition structure ใน Rust ทำให้เกิด Type safety เพราะทุก if ที่เป็น expression นั้นต้องมี return type เหมือนกันเสมอทำให้ compiler จับ type error ได้ตั้งแต่ compile time 
+การทำ condition เป็น boolean ก็ทำให้การ check condition เช่น การเผลอ assign แทน compare (if (x = 5)) ทำให้ condition ที่ต้องเป็น boolean นั้นตรวจจับได้และทำให้เกิด Reliability
+การตรวจสอบทั้งหมดเกิดขึ้น ที่ compile time เท่านั้น ไม่มีการเช็คเพิ่มตอน runtime และยังไม่ต้องมี garbage collector คอยตรวจสอบหรือ clean up memory ระหว่างรันโปรแกรม เพราะตัวแปรใน branch ต่างๆ ถูก drop ตาม scope โดยอัตโนมัติ]`
 
 ---
 
