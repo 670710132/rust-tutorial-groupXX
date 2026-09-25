@@ -392,22 +392,33 @@ fn main() {
 
 | Aspect | Rust | Other Language |
 |---|---|---|
-| Syntax | `[อธิบาย]` | `[อธิบาย]` |
-| Semantics / Behavior | `[อธิบาย]` | `[อธิบาย]` |
-| Type System | `[อธิบาย]` | `[อธิบาย]` |
-| Memory Management | `[อธิบาย]` | `[อธิบาย]` |
-| Safety | `[อธิบาย]` | `[อธิบาย]` |
+| Syntax | `[ไม่ต้องใส่วงเล็บครอบเงื่อนไข แต่บังคับใส่ {} เสมอเพื่อทำ block]` | `[ไม่ต้องใส่วงเล็บและไม่มี {} เลย ใช้ indentation การเว้นวรรค หรืิ tab แทนการกำหนด block พร้อมโคลอน :]]` |
+| Semantics / Behavior | `[Condition ต้องเป็น bool เท่านั้น]` | `[Condition รับได้แทบทุก type]` |
+| Type System | `[Static strong typing, ตรวจตอน compile time ถ้าใช้ if เป็น expression ทุก branch บังคับ return type เดียวกัน]` | `[[Dynamic typing ตรวจตอน runtime ตัวแปรเปลี่ยน type ได้ตลอด และ conditional expression ไม่บังคับให้สอง branch คืน type เดียวกันเลย]` |
+| Memory Management | `[ตัวแปรใน block ถูก drop อัตโนมัติทันทีที่ออกจาก scope ไม่มี garbage collector]` | `[ใช้ garbage collector คอยเก็บ memory ที่ไม่ใช้แล้วให้อัตโนมัติ]` |
+| Safety | `[Compiler เช็ค type และ bool ตั้งแต่ compile time ป้องกัน bug ก่อนรันจริง]` | `[ไม่มีการเช็ค type ตอน compile เพราะไม่มีขั้นตอน compile แบบ static ทำให้เกิด bug บาง class จะไปโผล่ตอน runtime แทน]` |
 
 ### Rust Example
 
 ```rust
-// Rust code
+fn main() {
+    let number = 3;
+    if number % 2 == 0 {
+        println!("{} is Even", number);
+    } else {
+        println!("{} is Odd", number);
+    }
+}
 ```
 
 ### `[Other Language]` Example
 
 ```python
-# Other language code
+number = 3
+    if number % 2 == 0:
+        print(f"{number} is Even")
+    else:
+        print(f"{number} is Odd")
 ```
 
 ### Analysis
