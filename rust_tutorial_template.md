@@ -358,31 +358,31 @@ fn main() {
 
 ### 9.1 Syntax
 
-`[Rust นั้นเป็นภาษาที่ Conditional structures มี syntax ที่ไม่เหมือนภาษาอื่นตรงที่ condition ของข้อนั้นๆ จะไม่มีการใส่วงเล็บแต่ก็ยังคงต้องใส่ {} เพื่อเป็นการทำ block ทุก statment และยังสามรถนำ if ไปใช้เป็น expression ได้โดยตรงและคืนค่าออกมาได้เลย เหมือนเป็นตัวแปรตัวหนึ่งทำให้เราเอาไป assign ใส่ตัวแปรได้เลย]`
+`Rust นั้นเป็นภาษาที่ Conditional structures มี syntax ที่ไม่เหมือนภาษาอื่นตรงที่ condition ของข้อนั้นๆ จะไม่มีการใส่วงเล็บแต่ก็ยังคงต้องใส่ {} เพื่อเป็นการทำ block ทุก statment และยังสามรถนำ if ไปใช้เป็น expression ได้โดยตรงและคืนค่าออกมาได้เลย เหมือนเป็นตัวแปรตัวหนึ่งทำให้เราเอาไป assign ใส่ตัวแปรได้เลย`
 
 ### 9.2 Semantics
 
-`[เพราะ if else ทำหน้าที่เป็นตัวตรวจเช็คเงื่อนไข(condition) เพื่อทำการเลือกทิศทางว่าจะทำใน if หรือ else และถ้าใช้ if เป็น expression ต้องมี else เสมอ]`
+`เพราะ if else ทำหน้าที่เป็นตัวตรวจเช็คเงื่อนไข(condition) เพื่อทำการเลือกทิศทางว่าจะทำใน if หรือ else และถ้าใช้ if เป็น expression ต้องมี else เสมอ`
 
 ### 9.3 Type System
 
-`[เพราะ Conditon ใน if ต้องเป็น boolean เท่านั้น และเมื่อถูกใช้เป็น expression return type ต้องเป็นชนิดเดียวกันเสมอเพราะตัวแปรใน Rust ทุกตัวต้องมี type ที่เป็น static type]`
+`เพราะ Conditon ใน if ต้องเป็น boolean เท่านั้น และเมื่อถูกใช้เป็น expression return type ต้องเป็นชนิดเดียวกันเสมอเพราะตัวแปรใน Rust ทุกตัวต้องมี type ที่เป็น static type`
 
 ### 9.4 Memory / Resource Management
 
-`[เพราะเนื่องจากตัวแปรที่ประกาศภายใน {} ของแต่ละ if นั้นจะถูกจำกัดแค่ใน block นั้น และจะถูก deallocate จาก memory หลังออกจาก if ทันทีทำให้ไม่ต้องพึ่ง garbage collector ทำให้ไม่มี overhead จาก runtime memory management]`
+`เพราะเนื่องจากตัวแปรที่ประกาศภายใน {} ของแต่ละ if นั้นจะถูกจำกัดแค่ใน block นั้น และจะถูก deallocate จาก memory หลังออกจาก if ทันทีทำให้ไม่ต้องพึ่ง garbage collector ทำให้ไม่มี overhead จาก runtime memory management`
 
 ### 9.5 Abstraction / Other PPL Concepts
 
-`[เพราะ if ของ Rust สามารถเป็น expression สะท้อนแนวคิดจากภาษาสาย functional ที่ทุกโครงสร้างคุม flow คืนค่าได้ ต่างจาก imperative ดั้งเดิมเช่น C/Java 
+`เพราะ if ของ Rust สามารถเป็น expression สะท้อนแนวคิดจากภาษาสาย functional ที่ทุกโครงสร้างคุม flow คืนค่าได้ ต่างจาก imperative ดั้งเดิมเช่น C/Java 
  ตัวแปรที่ประกาศใน if/else block จึงมี scope จำกัดแค่ใน block
- Rust ผสม imperative paradigm เข้ากับ functional paradigm หรือเรียกว่าภาษาแบบ multi-paradigm]`
+ Rust ผสม imperative paradigm เข้ากับ functional paradigm หรือเรียกว่าภาษาแบบ multi-paradigm`
 
 ### 9.6 Why Rust?
 
-`[เพราะ condition structure ใน Rust ทำให้เกิด Type safety เพราะทุก if ที่เป็น expression นั้นต้องมี return type เหมือนกันเสมอทำให้ compiler จับ type error ได้ตั้งแต่ compile time 
+`เพราะ condition structure ใน Rust ทำให้เกิด Type safety เพราะทุก if ที่เป็น expression นั้นต้องมี return type เหมือนกันเสมอทำให้ compiler จับ type error ได้ตั้งแต่ compile time 
 การทำ condition เป็น boolean ก็ทำให้การ check condition เช่น การเผลอ assign แทน compare (if (x = 5)) ทำให้ condition ที่ต้องเป็น boolean นั้นตรวจจับได้และทำให้เกิด Reliability
-การตรวจสอบทั้งหมดเกิดขึ้น ที่ compile time เท่านั้น ไม่มีการเช็คเพิ่มตอน runtime และยังไม่ต้องมี garbage collector คอยตรวจสอบหรือ clean up memory ระหว่างรันโปรแกรม เพราะตัวแปรใน branch ต่างๆ ถูก drop ตาม scope โดยอัตโนมัติ]`
+การตรวจสอบทั้งหมดเกิดขึ้น ที่ compile time เท่านั้น ไม่มีการเช็คเพิ่มตอน runtime และยังไม่ต้องมี garbage collector คอยตรวจสอบหรือ clean up memory ระหว่างรันโปรแกรม เพราะตัวแปรใน branch ต่างๆ ถูก drop ตาม scope โดยอัตโนมัติ`
 
 ---
 
@@ -392,11 +392,11 @@ fn main() {
 
 | Aspect | Rust | Other Language |
 |---|---|---|
-| Syntax | `[ไม่ต้องใส่วงเล็บครอบเงื่อนไข แต่บังคับใส่ {} เสมอเพื่อทำ block]` | `[ไม่ต้องใส่วงเล็บและไม่มี {} เลย ใช้ indentation การเว้นวรรค หรืิ tab แทนการกำหนด block พร้อมโคลอน :]]` |
-| Semantics / Behavior | `[Condition ต้องเป็น bool เท่านั้น]` | `[Condition รับได้แทบทุก type]` |
-| Type System | `[Static strong typing, ตรวจตอน compile time ถ้าใช้ if เป็น expression ทุก branch บังคับ return type เดียวกัน]` | `[[Dynamic typing ตรวจตอน runtime ตัวแปรเปลี่ยน type ได้ตลอด และ conditional expression ไม่บังคับให้สอง branch คืน type เดียวกันเลย]` |
-| Memory Management | `[ตัวแปรใน block ถูก drop อัตโนมัติทันทีที่ออกจาก scope ไม่มี garbage collector]` | `[ใช้ garbage collector คอยเก็บ memory ที่ไม่ใช้แล้วให้อัตโนมัติ]` |
-| Safety | `[Compiler เช็ค type และ bool ตั้งแต่ compile time ป้องกัน bug ก่อนรันจริง]` | `[ไม่มีการเช็ค type ตอน compile เพราะไม่มีขั้นตอน compile แบบ static ทำให้เกิด bug บาง class จะไปโผล่ตอน runtime แทน]` |
+| Syntax | `ไม่ต้องใส่วงเล็บครอบเงื่อนไข แต่บังคับใส่ {} เสมอเพื่อทำ block` | `ไม่ต้องใส่วงเล็บและไม่มี {} เลย ใช้ indentation การเว้นวรรค หรืิ tab แทนการกำหนด block พร้อมโคลอน :` |
+| Semantics / Behavior | `Condition ต้องเป็น bool เท่านั้น` | `Condition รับได้แทบทุก type` |
+| Type System | `Static strong typing, ตรวจตอน compile time ถ้าใช้ if เป็น expression ทุก branch บังคับ return type เดียวกัน` | `Dynamic typing ตรวจตอน runtime ตัวแปรเปลี่ยน type ได้ตลอด และ conditional expression ไม่บังคับให้สอง branch คืน type เดียวกันเลย` |
+| Memory Management | `ตัวแปรใน block ถูก drop อัตโนมัติทันทีที่ออกจาก scope ไม่มี garbage collector` | `ใช้ garbage collector คอยเก็บ memory ที่ไม่ใช้แล้วให้อัตโนมัติ` |
+| Safety | `Compiler เช็ค type และ bool ตั้งแต่ compile time ป้องกัน bug ก่อนรันจริง` | `ไม่มีการเช็ค type ตอน compile เพราะไม่มีขั้นตอน compile แบบ static ทำให้เกิด bug บาง class จะไปโผล่ตอน runtime แทน` |
 
 ### Rust Example
 
