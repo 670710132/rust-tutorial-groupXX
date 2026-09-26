@@ -1,7 +1,7 @@
 # Rust Tutorial Project — Principles of Programming Languages
 
-> **Topic No.:** 06  
-> **Topic Name:** Conditional Structures  
+> **Topic No.:** 06
+> **Topic Name:** Conditional Structure
 > **Group No.:** 06
 
 ---
@@ -32,71 +32,239 @@
 
 อธิบายว่า Topic นี้คืออะไร มีความสำคัญอย่างไร และใช้แก้ปัญหาอะไรในการเขียนโปรแกรม
 
-`[เขียนเนื้อหาที่นี่]`
+`Conditional Structure หรือ คำสั่งเงื่อนไข คือคำสั่งที่ใช้สำหรับการตัดสินใจ โดยการตัดสินใจนั้นจะขึ้นอยู่กับเงื่อนไขที่กำหนดไว้ ทำให้โปรแกรมสามารถตอบสนองต่อ ข้อมูลและสถานการณ์ที่แตกต่างกันได้ ถ้าไม่มี Conditional Structure โปรแกรมจะทำงานตามลำดับคำสั่งที่เขียนไว้เท่านั้น ไม่สามารถเลือกได้ว่า “ถ้าเกิดเหตุการณ์ A ให้ทำแบบนี้ แต่ถ้าเกิดเหตุการณ์ B ให้ทำอีกแบบ”สิ่งหนึ่งที่แตกต่างจากภาษาโปรแกรมหลายภาษา คือ เงื่อนไขเป็นแบบ Boolean ใน Rust ไม่จำเป็นต้องใส่วงเล็บ () ครอบไว้ แต่สามารถใส่วงเล็บได้ และแต่ละเงื่อนไขจะตามด้วย block { } ซึ่งเป็นส่วนของคำสั่งที่จะถูกทำงานเมื่อเงื่อนไขนั้นเป็นจริง สามารถควบคุม flow ของโปรแกรมโดยใช้ร่วมกับ relational comparison operators และ logical operators ได้ ใน Rust Conditional Structure หลัก ๆ ประกอบด้วย if, else if, else, match`
 
 ---
 
 ## 4. Key Concepts
 
-### 4.1 `[Concept 1]`
+### 4.1 `Conditional Statements`
 
 **คำอธิบาย**
 
-`[อธิบายแนวคิด]`
+`คำสั่งเงื่อนไขที่ใช้สำหรับให้โปรแกรม ตัดสินใจ โดยพิจารณาจากเงื่อนไขที่กำหนด เงื่อนไขที่โปรแกรมตรวจสอบ ซึ่งต้องให้ผลลัพธ์เป็น Boolean คือ true หรือ false ถ้าผลลัพธ์เป็น true จะทำคำสั่งใน block แต่ถ้า false จะไม่ทำ หรือไปตรวจสอบเงื่อนไขถัดไป`
 
 **ตัวอย่าง**
 
 ```rust
 fn main() {
-    println!("Hello, Rust!");
+    let score = 85;
+
+    if score >= 90 {
+        println!("Grade A");
+    } else if score >= 80 {
+        println!("Grade B");
+    } else {
+        println!("Grade C or below");
+    }
+}
+```
+**Explanation**
+
+` สร้างตัวแปรชื่อ score และกำหนดค่าเป็น 85 ตรวจสอบเงื่อนไขแรก 85 >= 90 เป็น true/false ผลลัพธ์เป็น false ดังนั้นไม่ทำคำสั่ง ตรวจสอบ else if ต่อ score >= 80 เป็น true/false ผลลัพธ์เป็น true ดังนั้นทำคำสั่ง println!("Grade B"); ส่วน else จะทำงานก็ต่อเมื่อ เงื่อนไขก่อนหน้าทั้งหมดเป็น false`
+
+---
+
+### 4.2 `if statement`
+
+`เป็นเงื่อนไขพื้นฐานตัวแรกที่ใช้สำหรับตรวจสอบเงื่อนไข ทำงานเฉพาะเมื่อเงื่อนไขเป็นจริง (true)`
+
+```rust
+fn main() {
+    let age = 20;
+
+    if age >= 18 {
+        println!("Adult");
+    }
+}
+```
+**Explanation**
+
+` สร้างตัวแปรชื่อ age และกำหนดค่าเป็น 20 ตรวจสอบเงื่อนไข age >= 18 เป็น true/false ผลลัพธ์เป็น true ดังนั้นทำคำสั่ง println!("Adult"); ถ้าเป็น false โปรแกรมจะไม่ทำคำสั่งภายในบล็อก if และจะทำงานต่อจากบล็อก if`
+
+---
+
+
+### 4.3 `else..if statement`
+
+`ใช้สำหรับตรวจสอบเงื่อนไขอื่นเพิ่มเติมหลังจากเงื่อนไข if ก่อนหน้าไม่เป็นจริง และก่อนที่จะไปถึง else โปรแกรมหนึ่งสามารถมี else if ได้หลายตัวใน Conditional Statement ชุดเดียวกัน `
+
+```rust
+fn main() {
+
+    if false {
+        println!("Primary if statement");
+    } else if false {
+        println!("Secondary if statement");
+    } else if true {
+        println!("Tertiary if statement");
+    }
+
+}
+```
+**Explanation**
+
+`โปรแกรมตรวจสอบเงื่อนไขแรกเป็น false ไม่ทำคำสั่งในบล็อก ตรวจสอบเงื่อนไขต่อไปเป็น false ไม่ทำคำสั่งในบล็อก  ตรวจสอบเงื่อนไขต่อไปเป็น true ดังนั้นจึงทำคำสั่ง println!("Tertiary if statement")`
+
+---
+
+### 4.4 `else  statement`
+
+`จะทำงานเมื่อเงื่อนไขของ if หรือเงื่อนไขก่อนหน้าไม่เป็นจริง (true ทำอันแรก / false ทำอันที่สอง)  `
+
+```rust
+fn main() {
+    let age = 16;
+
+    if age >= 18 {
+        println!("You can vote.");
+    } else {
+        println!("You are too young to vote.");
+    }
+}
+```
+**Explanation**
+
+` สร้างตัวแปรชื่อ age และกำหนดค่าเป็น 16 ตรวจสอบเงื่อนไข age >= 18 เป็น true/false ผลลัพธ์เป็น true ดังนั้นทำคำสั่ง println!("You can vote."); ถ้าเป็น false โปรแกรมจะคำสั่งใน else แทน`
+
+---
+
+### 4.5 `Logical Operators`
+
+`เราสามารถตรวจสอบหลายเงื่อนไขภายใน if ได้ โดยใช้ logical operators 2 ตัว คือ && และ ||`
+
+&& หรือ Conditional AND ใช้ตรวจสอบว่าเงื่อนไขหนึ่งและอีกเงื่อนไขหนึ่งเป็นจริงหรือไม่ ทั้งสองเงื่อนไขต้องเป็น true
+```rust
+fn main() {
+    let a = 5;
+
+    if a > 0 && a < 10 {
+        println!("Both conditions are true");
+    }
 }
 ```
 
+|| หรือ Conditional OR ใช้ตรวจสอบว่าเงื่อนไขหนึ่งหรืออีกเงื่อนไขหนึ่งเป็นจริงหรือไม่ ไม่จำเป็นต้องเป็นจริงทั้งสองเงื่อนไข
+```rust
+fn main() {
+    let a = 5;
+
+    if a > 0 || a < 10 {
+        println!("One of the conditions are true");
+    }
+}
+```
+
+---
+
+### 4.6 `Nested Conditional`
+
+`คือการนำคำสั่ง if ไปใส่ไว้ภายในบล็อก if หรือ else อื่นอีกทีหนึ่ง มักใช้เมื่อเราต้องการตรวจสอบเงื่อนไขรอง หลังจากที่เงื่อนไขแรกเป็นจริงแล้ว Compiler จะประเมินเงื่อนไขแบบเป็นลำดับชั้น เริ่มจาก if ด้านนอกก่อน แล้วจึงเข้าไปตรวจสอบ if ด้านใน`
+
+```rust
+fn main() {
+    let number = 5;
+
+    if number < 10 {
+
+        if number > 0 {
+            println!("Inner if statement");
+        }
+
+    }
+}
+```
 **Explanation**
 
-`[อธิบายว่า code ทำงานอย่างไร]`
+` สร้างตัวแปรชื่อ number และกำหนดค่าเป็น 5 ตรวจสอบเงื่อนไข number < 10 เป็น true/false ผลลัพธ์เป็น true ดังนั้นโปรแกรมจึง เข้าไปทำคำสั่งภายใน if เจอ if อีกตัวหนึ่งด้านใน นี่คือ Nested if ตรวจสอบเงื่อนไข number > 0 ผลลัพธ์เป็น true ดังนั้นจึงทำ println!("Inner if statement");`
 
 ---
 
-### 4.2 `[Concept 2]`
+### 4.7 `match`
 
-`[อธิบายแนวคิด]`
+`match ใช้สำหรับตรวจสอบค่าหนึ่งค่ากับรายการของค่าที่เป็นไปได้หลายค่า ใช้เมื่อเราต้องการตรวจสอบหลายกรณี ถ้าคุ้นเคยกับภาษาในตระกูล C สามารถมองว่า match มีแนวคิดคล้ายกับ switch statement แต่ syntax แตกต่างกัน`
 
 ```rust
-// Rust code
+fn main() {
+    let grade = "X";
+
+    match grade {
+        "A" => println!("Excellent"),
+        "B" => println!("Good"),
+        "C" => println!("Okay"),
+        _ => println!("Unknown grade"),
+    }
+}
+```
+**Explanation**
+
+` สร้างตัวแปรชื่อ grade กำหนดค่าเป็น "X" ใช้ keyword match ตามด้วยค่าหลักที่เราต้องการตรวจสอบนำค่าของ grade ไป เปรียบเทียบกับรูปแบบ (pattern) ที่กำหนดไว้ทีละตัว ตรวจสอบว่าตรงกับค่าไหนถ้าตรงจะทำงานตามที่กำหนด ถ้าไม่ตรงเลยจะทำ _ หมายถึง ค่าหรือกรณีอื่น ๆ ที่ไม่ตรงกับ pattern ก่อนหน้า ดังนั้นผลลัพธ์คือ Unknown grade`
+
+---
+
+### 4.8 `Expression`
+
+`Rust สามารถเอาผลลัพธ์จาก if...else ไปเก็บในตัวแปรได้ ไม่ได้ใช้แค่ควบคุมการทำงาน`
+
+```rust
+fn main() {
+    let time = 20;
+
+    let greeting = if time < 18 {
+        "Good day."
+    } else {
+        "Good evening."
+    };
+
+    println!("{}", greeting);
+}
+```
+**Explanation**
+
+` สร้างตัวแปรชื่อ time กำหนดค่าเป็น 20 และสร้างตัวแปรชื่อ greeting เพื่อให้ if-else สามารถนำผลลัพธ์ที่ได้ไปเก็บในตัวแปร greeting โปรแกรมตรวจสอบ time < 18 ได้ผลลัพธ์เป็น false ดังนั้นจะเลือกค่าจาก else นำค่านี้ไปเก็บที่ greeting จะได้ว่า greeting = "Good evening." แล้วนำค่าของ greeting มาแสดงผล`
+
+---
+
+### 4.9 `Type Compatibility`
+
+`ความเข้ากันได้ของชนิดข้อมูล (Data Type) ค่าที่ได้จากแต่ละ branch ของ if และ else ต้องมีชนิดข้อมูลที่เข้ากันได้ ถ้าไม่เข้ากัน Rust จะเกิด error`
+
+```rust
+fn main() {
+    let number = 5;
+
+    let result = if number < 10 {
+        "Too small" // เป็น &str
+    } else {
+        "Too large" // เป็น &str ทั้งสอง branch Type ตรงกัน
+    };
+
+    println!("{}", result);
+}
 ```
 
 ---
 
-### 4.3 `[Concept 3]`
+### 4.10 `Ternary Operator`
 
-`[อธิบายแนวคิด]`
+`Ternary Operator คือรูปแบบการเขียนเงื่อนไขแบบสั้น ๆ เพื่อเลือกค่าระหว่าง 2 ค่า แต่ Rust ไม่มี Ternary Operator ?: จะใช้ if-else expression แทน`
 
 ```rust
-// Rust code
+fn main() {
+    let age = 20;
+
+    let result = if age >= 18 {
+        "Adult"
+    } else {
+        "Minor"
+    };
+
+    println!("{}", result);
+}
 ```
 
 ---
 
-### 4.4 `[Concept 4 — ถ้ามี]`
-
-`[อธิบายแนวคิด]`
-
-```rust
-// Rust code
-```
-
----
-
-### 4.5 `[Concept 5 — ถ้ามี]`
-
-`[อธิบายแนวคิด]`
-
-```rust
-// Rust code
-```
-
----
 
 ## 5. Important Syntax / Rules
 
