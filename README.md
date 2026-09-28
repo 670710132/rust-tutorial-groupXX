@@ -21,4 +21,4 @@
 
 * **[อ่านบทเรียนหลัก (Tutorial Document)](./rust_tutorial_template.md)**
 * **[ดูไฟล์โค้ดตัวอย่างและแบบฝึกหัดทั้งหมด (Source Code)](./code_examples/)**
-* **[Slide:** [คลิก]](https://canva.link/yeg9xkn4pibdh97)
+* **[Slide:](https://canva.link/yeg9xkn4pibdh97)**
