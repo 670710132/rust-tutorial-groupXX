@@ -11,9 +11,9 @@
 | # | Name | Student ID | GitHub Username | Main Responsibility |
 |---|---|---|---|---|
 | 1 | `นางสาวธนัญญา พรมภักดี` | `670710128` | `@670710128` | Concept + Code |
-| 2 | `นายธีทัต สุจริตพาณิช` | `670710130` | `@[670710130]` | Code + Demo |
+| 2 | `นายธีทัต สุจริตพาณิช` | `670710130` | `@670710130` | Code + Demo |
 | 3 | `นายนทิบดี ช้างทอง` | `670710131` | `@670710131` | Rust vs Other Language + PPL |
-| 4 | `นายนนธวัช งามบุญศิริสิงห์` | `[670710132]` | `@670710132` | Exercises + Common Mistakes |
+| 4 | `นายนนธวัช งามบุญศิริสิงห์` | `670710132` | `@670710132` | Exercises + Common Mistakes |
 
 ---
 
@@ -153,7 +153,6 @@ fn main() {
     }
 }
 ```
-
 ---
 
 ### 4.6 `Nested Conditional`
@@ -201,29 +200,7 @@ fn main() {
 
 ---
 
-### 4.8 `if let`
-
-`if let จะตรวจสอบว่า “ค่านี้ตรงกับ Pattern ที่เราต้องการไหม” ถ้าตรงก็ทำงาน ถ้าไม่ตรงก็ข้าม เหมาะสำหรับเมื่อเราสนใจ pattern ใด pattern หนึ่งเป็นพิเศษ`
-
-```rust
-fn main() {
-    let name = Some("Anna");
-
-    if let Some(n) = name {
-        println!("Hello {}", n);
-    } else {
-        println!("No name");
-    }
-}
-```
-**Explanation**
-
-`สร้างตัวแปร name โดย Some("Anna") หมายถึง มีค่าอยู่ และค่าคือ "Anna" ใช้ if let ตรวจสอบว่า name มีรูปแบบเป็น Some(...) หรือไม่ ตรวจสอบแล้วว่า name ตรงกับ Some(n) และค่า "Anna" จะถูกนำมาเก็บไว้ในตัวแปร n ดังนั้นทำ println!("Hello {}", n); else จะทำงาน เมื่อ name ไม่ตรงกับ Some(n)`
-
----
-
-
-### 4.9 `Expression`
+### 4.8 `Expression`
 
 `Rust สามารถเอาผลลัพธ์จาก if...else ไปเก็บในตัวแปรได้ ไม่ได้ใช้แค่ควบคุมการทำงาน`
 
@@ -246,7 +223,7 @@ fn main() {
 
 ---
 
-### 4.10 `Type Compatibility`
+### 4.9 `Type Compatibility`
 
 `ความเข้ากันได้ของชนิดข้อมูล (Data Type) ค่าที่ได้จากแต่ละ branch ของ if และ else ต้องมีชนิดข้อมูลที่เข้ากันได้ ถ้าไม่เข้ากัน Rust จะเกิด error`
 
@@ -263,10 +240,9 @@ fn main() {
     println!("{}", result);
 }
 ```
-
 ---
 
-### 4.11 `Ternary Operator`
+### 4.10 `Ternary Operator`
 
 `Ternary Operator คือรูปแบบการเขียนเงื่อนไขแบบสั้น ๆ เพื่อเลือกค่าระหว่าง 2 ค่า แต่ Rust ไม่มี Ternary Operator ?: จะใช้ if-else expression แทน`
 
@@ -283,7 +259,6 @@ fn main() {
     println!("{}", result);
 }
 ```
-
 ---
 
 
