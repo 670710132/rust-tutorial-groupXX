@@ -571,27 +571,31 @@ fn main() {
 
 ### 9.1 Syntax
 
-`[Topic นี้เกี่ยวข้องกับ syntax อย่างไร]`
+`Rust นั้นเป็นภาษาที่ Conditional structures มี syntax ที่ไม่เหมือนภาษาอื่นตรงที่ condition ของข้อนั้นๆ จะไม่มีการใส่วงเล็บแต่ก็ยังคงต้องใส่ {} เพื่อเป็นการทำ block ทุก statment และยังสามรถนำ if ไปใช้เป็น expression ได้โดยตรงและคืนค่าออกมาได้เลย เหมือนเป็นตัวแปรตัวหนึ่งทำให้เราเอาไป assign ใส่ตัวแปรได้เลย`
 
 ### 9.2 Semantics
 
-`[คำสั่ง/construct เหล่านี้มีความหมายหรือพฤติกรรมอย่างไร]`
+`เพราะ if else ทำหน้าที่เป็นตัวตรวจเช็คเงื่อนไข(condition) เพื่อทำการเลือกทิศทางว่าจะทำใน if หรือ else และถ้าใช้ if เป็น expression ต้องมี else เสมอ`
 
 ### 9.3 Type System
 
-`[เกี่ยวข้องกับ type system อย่างไร ถ้ามี]`
+`เพราะ Conditon ใน if ต้องเป็น boolean เท่านั้น และเมื่อถูกใช้เป็น expression return type ต้องเป็นชนิดเดียวกันเสมอเพราะตัวแปรใน Rust ทุกตัวต้องมี type ที่เป็น static type`
 
 ### 9.4 Memory / Resource Management
 
-`[เกี่ยวข้องกับ memory หรือ resource management อย่างไร ถ้ามี]`
+`เพราะเนื่องจากตัวแปรที่ประกาศภายใน {} ของแต่ละ if นั้นจะถูกจำกัดแค่ใน block นั้น และจะถูก deallocate จาก memory หลังออกจาก if ทันทีทำให้ไม่ต้องพึ่ง garbage collector ทำให้ไม่มี overhead จาก runtime memory management`
 
 ### 9.5 Abstraction / Other PPL Concepts
 
-`[อธิบาย abstraction, scope, binding, paradigm หรือแนวคิด PPL อื่นที่เกี่ยวข้อง]`
-
+`เพราะ if ของ Rust สามารถเป็น expression สะท้อนแนวคิดจากภาษาสาย functional ที่ทุกโครงสร้างคุม flow คืนค่าได้ ต่างจาก imperative ดั้งเดิมเช่น C/Java 
+ ตัวแปรที่ประกาศใน if/else block จึงมี scope จำกัดแค่ใน block
+ Rust ผสม imperative paradigm เข้ากับ functional paradigm หรือเรียกว่าภาษาแบบ multi-paradigm`
+ 
 ### 9.6 Why Rust?
 
-`[Rust ใช้แนวคิดนี้เพื่อเพิ่ม safety, reliability หรือ performance อย่างไร]`
+`เพราะ condition structure ใน Rust ทำให้เกิด Type safety เพราะทุก if ที่เป็น expression นั้นต้องมี return type เหมือนกันเสมอทำให้ compiler จับ type error ได้ตั้งแต่ compile time 
+การทำ condition เป็น boolean ก็ทำให้การ check condition เช่น การเผลอ assign แทน compare (if (x = 5)) ทำให้ condition ที่ต้องเป็น boolean นั้นตรวจจับได้และทำให้เกิด Reliability
+การตรวจสอบทั้งหมดเกิดขึ้น ที่ compile time เท่านั้น ไม่มีการเช็คเพิ่มตอน runtime และยังไม่ต้องมี garbage collector คอยตรวจสอบหรือ clean up memory ระหว่างรันโปรแกรม เพราะตัวแปรใน branch ต่างๆ ถูก drop ตาม scope โดยอัตโนมัติ`
 
 ---
 
@@ -601,27 +605,40 @@ fn main() {
 
 | Aspect | Rust | Other Language |
 |---|---|---|
-| Syntax | `[อธิบาย]` | `[อธิบาย]` |
-| Semantics / Behavior | `[อธิบาย]` | `[อธิบาย]` |
-| Type System | `[อธิบาย]` | `[อธิบาย]` |
-| Memory Management | `[อธิบาย]` | `[อธิบาย]` |
-| Safety | `[อธิบาย]` | `[อธิบาย]` |
+| Syntax | `ไม่ต้องใส่วงเล็บครอบเงื่อนไข แต่บังคับใส่ {} เสมอเพื่อทำ block` | `ไม่ต้องใส่วงเล็บและไม่มี {} เลย ใช้ indentation การเว้นวรรค หรืิ tab แทนการกำหนด block พร้อมโคลอน :` |
+| Semantics / Behavior | `Condition ต้องเป็น bool เท่านั้น` | `Condition รับได้แทบทุก type` |
+| Type System | `Static strong typing, ตรวจตอน compile time ถ้าใช้ if เป็น expression ทุก branch บังคับ return type เดียวกัน` | `Dynamic typing ตรวจตอน runtime ตัวแปรเปลี่ยน type ได้ตลอด และ conditional expression ไม่บังคับให้สอง branch คืน type เดียวกันเลย` |
+| Memory Management | `ตัวแปรใน block ถูก drop อัตโนมัติทันทีที่ออกจาก scope ไม่มี garbage collector` | `ใช้ garbage collector คอยเก็บ memory ที่ไม่ใช้แล้วให้อัตโนมัติ` |
+| Safety | `Compiler เช็ค type และ bool ตั้งแต่ compile time ป้องกัน bug ก่อนรันจริง` | `ไม่มีการเช็ค type ตอน compile เพราะไม่มีขั้นตอน compile แบบ static ทำให้เกิด bug บาง class จะไปโผล่ตอน runtime แทน` |
 
 ### Rust Example
 
 ```rust
-// Rust code
+fn main() {
+    let number = 3;
+    if number % 2 == 0 {
+        println!("{} is Even", number);
+    } else {
+        println!("{} is Odd", number);
+    }
+}
 ```
 
 ### `[Other Language]` Example
 
 ```python
-# Other language code
+number = 3
+    if number % 2 == 0:
+        print(f"{number} is Even")
+    else:
+        print(f"{number} is Odd")
 ```
 
 ### Analysis
 
-`[อธิบายความแตกต่างที่สำคัญ และเหตุผลด้านการออกแบบภาษา]`
+`Rust ต้องมี fn main() ครอบ ใช้ {} กำหนดขอบเขต block, และบรรทัดคำสั่งต้องปิดด้วย ;
+Python ไม่ต้องมี function ครอบ, ใช้ indentation แทน {} ในการกำหนดขอบเขต if else, ไม่ต้องมี ; ปิดบรรทัด
+ในแง่ type system ตัวแปร number ทั้งสองภาษาไม่ได้ระบุ type ชัดเจน แต่ต่างกันตรงที่ Rust เป็น int32 ตอน compile ในขณะที่ Python ตัวแปรเป็น int แบบ dynamic คือเปลี่ยน type ได้ตลอดเวลาแม้ตอนรันโปรแกรม`
 
 ---
 
