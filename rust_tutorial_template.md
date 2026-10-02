@@ -601,7 +601,7 @@ fn main() {
 
 ## 10. Rust vs. Other Language
 
-**Comparison Language:** `[Python / C / C++ / Java / Kotlin / ...]`
+**Comparison Language:** `Python`
 
 | Aspect | Rust | Other Language |
 |---|---|---|
@@ -624,7 +624,7 @@ fn main() {
 }
 ```
 
-### `[Other Language]` Example
+### `Python` Example
 
 ```python
 number = 3
