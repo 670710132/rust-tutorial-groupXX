@@ -571,15 +571,16 @@ fn main() {
 
 ### 9.1 Syntax
 
-`Rust นั้นเป็นภาษาที่ Conditional structures มี syntax ที่ไม่เหมือนภาษาอื่นตรงที่ condition ของข้อนั้นๆ จะไม่มีการใส่วงเล็บแต่ก็ยังคงต้องใส่ {} เพื่อเป็นการทำ block ทุก statment และยังสามรถนำ if ไปใช้เป็น expression ได้โดยตรงและคืนค่าออกมาได้เลย เหมือนเป็นตัวแปรตัวหนึ่งทำให้เราเอาไป assign ใส่ตัวแปรได้เลย`
+`Rust นั้นเป็นภาษาที่ Conditional structures มี syntax ที่ไม่เหมือนภาษาอื่นตรงที่ condition ของข้อนั้นๆ จะไม่จำเป็นต้องใส่วงเล็บแต่ก็ยังคงต้องใส่ {} เพื่อเป็นการทำ block ทุก statement และยังสามรถนำ if ไปใช้เป็น expression ได้โดยตรงและคืนค่าออกมาได้เลย เหมือนเป็นตัวแปรตัวหนึ่งทำให้เราเอาไป assign ใส่ตัวแปรได้เลย และ nested if เขียนซ้อนกันได้โดยวาง if ไว้ใน block ของ if อีกตัว หรือใช้ else if ต่อกันได้`
 
 ### 9.2 Semantics
 
-`เพราะ if else ทำหน้าที่เป็นตัวตรวจเช็คเงื่อนไข(condition) เพื่อทำการเลือกทิศทางว่าจะทำใน if หรือ else และถ้าใช้ if เป็น expression ต้องมี else เสมอ`
+`if/else ตรวจเงื่อนไขเพื่อเลือกรันเพียง branch เดียว branch ที่ไม่ถูกเลือกจะไม่ถูก evaluate และ &&, || เป็น short-circuit เมื่อใช้เป็น expression ค่าที่ได้คือค่าของ branch ที่ถูกเลือก ถ้าไม่มี else จะมี type เป็น () จึงใช้คืนค่าอื่นไม่ได้ ดังนั้น if ที่ต้องคืนค่าจริงต้องมี else เสมอ`
 
 ### 9.3 Type System
 
-`เพราะ Conditon ใน if ต้องเป็น boolean เท่านั้น และเมื่อถูกใช้เป็น expression return type ต้องเป็นชนิดเดียวกันเสมอเพราะตัวแปรใน Rust ทุกตัวต้องมี type ที่เป็น static type`
+`condition ของ if ธรรมดาต้องเป็น boolean เท่านั้น เพราะ Rust ไม่มี implicit conversion ส่วนของ if let ใช้ pattern matching แทน แต่ยังตรวจที่ compile time เช่นกัน เมื่อใช้ if เป็น expression ทุก branch ต้องมี type เดียวกัน เพราะ Rust เป็น 
+static type และ compiler ต้องหา type ของ expression ให้ได้ตอน compile time`
 
 ### 9.4 Memory / Resource Management
 
