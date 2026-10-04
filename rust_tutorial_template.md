@@ -223,45 +223,6 @@ fn main() {
 
 ---
 
-### 4.9 `Type Compatibility`
-
-`ความเข้ากันได้ของชนิดข้อมูล (Data Type) ค่าที่ได้จากแต่ละ branch ของ if และ else ต้องมีชนิดข้อมูลที่เข้ากันได้ ถ้าไม่เข้ากัน Rust จะเกิด error`
-
-```rust
-fn main() {
-    let number = 5;
-
-    let result = if number < 10 {
-        "Too small" // เป็น &str
-    } else {
-        "Too large" // เป็น &str ทั้งสอง branch Type ตรงกัน
-    };
-
-    println!("{}", result);
-}
-```
----
-
-### 4.10 `Ternary Operator`
-
-`Ternary Operator คือรูปแบบการเขียนเงื่อนไขแบบสั้น ๆ เพื่อเลือกค่าระหว่าง 2 ค่า แต่ Rust ไม่มี Ternary Operator ?: จะใช้ if-else expression แทน`
-
-```rust
-fn main() {
-    let age = 20;
-
-    let result = if age >= 18 {
-        "Adult"
-    } else {
-        "Minor"
-    };
-
-    println!("{}", result);
-}
-```
----
-
-
 ## 5. Important Syntax / Rules
 
 | Syntax / Rule | Meaning | Example |
