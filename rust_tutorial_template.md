@@ -684,9 +684,12 @@ Python ไม่ต้องมี function ครอบ, ใช้ indentation 
 
 1. Klabnik, S., & Nichols, C. (2023). *Control Flow - The Rust Programming Language*. Rust Documentation. https://doc.rust-lang.org/book/ch03-05-control-flow.html
 2. Rust Community. (n.d.). *If/else - Rust by Example*. Rust Documentation. https://doc.rust-lang.org/rust-by-example/flow_control/if_else.html
-3. Rust Reference Team. (n.d.). *If expressions - The Rust Reference*. Rust Documentation. https://doc.rust-lang.org/reference/expressions/if-expr.html
-4. Rust Community. (n.d.). *if let - Rust by Example*. Rust Documentation. https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html
-
+3. Rust Community. (n.d.). *if let - Rust by Example*. Rust Documentation. https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html
+4.  Rust Reference Team. (n.d.). *If expressions - The Rust Reference*. Rust Documentation. https://doc.rust-lang.org/reference/expressions/if-expr.html
+5. Rust Community. (n.d.). *Rust by Example*. Rust Documentation. https://doc.rust-lang.org/rust-by-example/
+6. GeeksforGeeks. (n.d.). *Conditionals in Rust*. https://www.geeksforgeeks.org/rust/conditionals-in-rust/
+7. W3Schools. (n.d.). *Rust if .. else Conditions*. https://www.w3schools.com/rust/rust_if_else.php
+8. 
 ---
 
 ## 13. AI Usage Declaration
@@ -739,21 +742,21 @@ Python ไม่ต้องมี function ครอบ, ใช้ indentation 
 
 ## 15. Final Checklist
 
-- [ ] Learning Objectives ครบ 3–4 ข้อ
-- [ ] Key Concepts ครบถ้วน
-- [ ] Syntax / Rules
-- [ ] Runnable Code Examples
-- [ ] Code Compile และ Run ได้จริง
-- [ ] Common Mistakes
-- [ ] Exercises 2 ข้อ พร้อม Solutions
-- [ ] PPL Perspective
-- [ ] Rust vs Other Language
-- [ ] References อย่างน้อย 4 แหล่ง
-- [ ] AI Usage Declaration
-- [ ] GitHub Contribution
-- [ ] สมาชิกทั้ง 4 คนมีส่วนร่วม
-- [ ] สมาชิกทั้ง 4 คนพร้อมนำเสนอคนละ 5 นาที
-- [ ] สมาชิกทุกคนสามารถอธิบาย Code ของกลุ่มได้
+- [x] Learning Objectives ครบ 3–4 ข้อ
+- [x] Key Concepts ครบถ้วน
+- [x] Syntax / Rules
+- [x] Runnable Code Examples
+- [x] Code Compile และ Run ได้จริง
+- [x] Common Mistakes
+- [x] Exercises 2 ข้อ พร้อม Solutions
+- [x] PPL Perspective
+- [x] Rust vs Other Language
+- [x] References อย่างน้อย 4 แหล่ง
+- [x] AI Usage Declaration
+- [x] GitHub Contribution
+- [x] สมาชิกทั้ง 4 คนมีส่วนร่วม
+- [x] สมาชิกทั้ง 4 คนพร้อมนำเสนอคนละ 5 นาที
+- [x] สมาชิกทุกคนสามารถอธิบาย Code ของกลุ่มได้
 
 ---
 
